@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAFFESION CPM Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>PAFFESION CPM Store</h1>
+            </div>
+            <nav class="nav">
+                <a href="#catalog">Каталог</a>
+                <a href="#about">О нас</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>PAFFESION CPM Store</h1>
+                <p>Купи машину, аккаунт, внутриигровую валюту и многое другое!</p>
+                <a href="#catalog" class="btn">Перейти в каталог</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2>Каталог товаров</h2>
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Все товары</button>
+                <button class="category-btn" data-category="cars">Автомобили</button>
+                <button class="category-btn" data-category="accounts">Аккаунты</button>
+                <button class="category-btn" data-category="money">Деньги CPM</button>
+            </div>
+            
+            <div class="products">
+                <!-- Автомобиль 1 -->
+                <div class="product-card" data-category="cars">
+                    <img src="https://avatars.mds.yandex.net/i?id=7820eebfe905c33f66eaa4b406ed7ee4_l-9065887-images-thumbs&n=13" alt="BMW M5">
+                    <div class="product-info">
+                        <h3>BMW M5 F90</h3>
+                        <p>Макс. скорость: 1460 км/ч<br>Полный тюнинг + мигалки, винил, дым.</p>
+                        <div class="price">100 руб.</div>
+                        <button class="btn-buy" data-product="BMW M5 F90">Купить</button>
+                    </div>
+                </div>
+
+                <!-- Автомобиль 2 -->
+                <div class="product-card" data-category="cars">
+                    <img src="https://avatars.mds.yandex.net/i?id=0975e7926ca05ac1ab46c65d565eea54_l-5377805-images-thumbs&n=13" alt="Audi RS6">
+                    <div class="product-info">
+                        <h3>Audi RS6 Avant</h3>
+                        <p>Макс. скорость: 650 км/ч<br>Уникальный цвет + мигалки, шильдик.</p>
+                        <div class="price">150 руб.</div>
+                        <button class="btn-buy" data-product="Audi RS6 Avant">Купить</button>
+                    </div>
+                </div>
+
+                <!-- Аккаунт -->
+                <div class="product-card" data-category="accounts">
+                    <img src="https://playerok.com/imgproxy/k_ZPR6_mx-qcSowPMk0IXVzpc5AZeHLf9GBzNW6x_1s/wm:0.8:soea:5:2:0.2/rs:fill:0:1000:0/g:no/quality:99/czM6Ly9wbGF5ZXJvay8vaW1hZ2VzLzFlZjQyOTI3LWRhYjktNjUzMC1kNGU3LWY0MDhlMzc3NmM0ZS5wbmc.jpg" alt="Аккаунт">
+                    <div class="product-info">
+                        <h3>Премиум аккаунт</h3>
+                        <p>Ранг кинг<br>Все открыто<br>Эксклюзивные машины</p>
+                        <div class="price">1200 руб.</div>
+                        <button class="btn-buy" data-product="Премиум аккаунт">Купить</button>
+                    </div>
+                </div>
+
+                <!-- Деньги -->
+                <div class="product-card" data-category="money">
+                    <img src="http://avatars.mds.yandex.net/get-vthumb/3871370/0818f98eaba2e5f9f27837f8acf6c86a/800x450" alt="Деньги CPM">
+                    <div class="product-info">
+                        <h3>25.000.000 CPM</h3>
+                        <p>Внутриигровая валюта<br>Мгновенная доставка</p>
+                        <div class="price">10 руб.</div>
+                        <button class="btn-buy" data-product="1.000.000 CPM">Купить</button>
+                    </div>
+                </div>
+
+                <!-- Больше товаров -->
+                <div class="product-card" data-category="money">
+                    <img src="https://60.img.avito.st/image/1/1.NOzwn7a4mAXGNloAlI9duIs9mgNOPhoNhjuaB0A2kA9G.7Zt0zMrfahKI75gRyqhg08yV6U0UTDVANBZhd7hhe1s" alt="Деньги CPM">
+                    <div class="product-info">
+                        <h3>50.000.000 CPM</h3>
+                        <p>Внутриигровая валюта<br>Мгновенная доставка</p>
+                        <div class="price">20 руб.</div>
+                        <button class="btn-buy" data-product="5.000.000 CPM">Купить</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accounts">
+                    <img src="https://frankfurt2.apollo.olxcdn.com/v1/files/6xsnaz3tw7nt3-KZ/image" alt="Аккаунт">
+                    <div class="product-info">
+                        <h3>Стартовый аккаунт</h3>
+                        <p><br>3 гаража<br>2 премиум машины</p>
+                        <div class="price">60 руб.</div>
+                        <button class="btn-buy" data-product="Стартовый аккаунт">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Почему выбирают нас?</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🚀 Мгновенная доставка</h3>
+                    <p>Получите товар в течение 5-15 минут после оплаты</p>
+                </div>
+                <div class="feature">
+                    <h3>🛡️ Безопасная сделка</h3>
+                    <p>Гарантия возврата средств при проблемах</p>
+                </div>
+                <div class="feature">
+                    <h3>💰 Лучшие цены</h3>
+                    <p>Постоянные акции и система скидок</p>
+                </div>
+                <div class="feature">
+                    <h3>💬 Поддержка 24/7</h3>
+                    <p>Всегда на связи чтобы помочь вам</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>Отзывы покупателей</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p>"Купил BMW M5, все пришло за 10 минут! Рекомендую!"</p>
+                    <span>- Иван ★★★★★</span>
+                </div>
+                <div class="review-card">
+                    <p>"Брал 5 миллионов, все честно, поддержка помогла с проблемой"</p>
+                    <span>- Алексей ★★★★★</span>
+                </div>
+                <div class="review-card">
+                    <p>"Премиум аккаунт полностью соответствует описанию, спасибо!"</p>
+                    <span>- Дмитрий ★★★★★</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-methods">
+                <a href="https://t.me/your_telegram" class="contact-link telegram" target="_blank">
+                    📱 Telegram
+                </a>
+                <a href="https://vk.com/your_vk" class="contact-link vk" target="_blank">
+                    👥 VKontakte
+                </a>
+                <a href="https://discord.gg/your_discord" class="contact-link discord" target="_blank">
+                    💬 Discord
+                </a>
+            </div>
+        </div>
+    </section><!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 PAFFESION CPM Store. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Купить товар</h3>
+            <p id="modalProductName"></p>
+            <div class="modal-buttons">
+                <a href="https://t.me/your_telegram" class="btn-telegram" target="_blank">
+                    Написать в Telegram
+                </a>
+                <button class="btn-copy" id="copyProduct">
+                    Скопировать название
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
