@@ -207,3 +207,608 @@
 </html>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с системой пользователей</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ffd700;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .auth-section {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;}
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .user-info {
+            flex-grow: 1;
+        }
+        
+        .username {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .verified-badge {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+        
+        .user-role {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        .profile-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .users-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .user-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .profile-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .users-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MySite</div>
+                <div class="nav-links">
+                    <a href="#" id="home-link">Главная</a>
+                    <a href="#" id="profile-link">Профиль</a>
+                    <a href="#" id="users-link">Пользователи</a>
+                    <a href="#" id="login-link">Войти</a>
+                    <a href="#" id="register-link">Регистрация</a>
+                    <a href="#" id="logout-link" class="hidden">Выйти</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <!-- Главная страница -->
+            <section id="home-section">
+                <h1>Добро пожаловать на наш сайт!</h1>
+                <p>Это демонстрация системы пользователей с галочками для владельцев и администраторов.</p><div class="profile-card" id="current-user-card" style="display: none;">
+                    <h2>Ваш профиль</h2>
+                    <div class="profile-header">
+                        <div class="avatar" id="current-user-avatar">U</div>
+                        <div class="user-info">
+                            <div class="username">
+                                <span id="current-user-name"></span>
+                                <span class="verified-badge" id="current-user-badge" style="display: none;">✓</span>
+                            </div>
+                            <div class="user-role" id="current-user-role"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Страница профиля -->
+            <section id="profile-section" class="hidden">
+                <h1>Ваш профиль</h1>
+                <div id="profile-content">
+                    <!-- Содержимое профиля будет заполнено JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Страница пользователей -->
+            <section id="users-section" class="hidden">
+                <h1>Пользователи</h1>
+                <div id="users-content">
+                    <!-- Список пользователей будет заполнен JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Форма входа -->
+            <section id="login-section" class="hidden">
+                <div class="auth-section">
+                    <h2>Вход в аккаунт</h2>
+                    <div id="login-alert"></div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Пароль</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit">Войти</button>
+                    </form>
+                    <p style="margin-top: 1rem;">Нет аккаунта? <a href="#" id="to-register">Зарегистрироваться</a></p>
+                </div>
+            </section>
+            
+            <!-- Форма регистрации -->
+            <section id="register-section" class="hidden">
+                <div class="auth-section">
+                    <h2>Регистрация</h2>
+                    <div id="register-alert"></div>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Имя</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Пароль</label>
+                            <input type="password" id="register-password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-role">Роль</label>
+                            <select id="register-role">
+                                <option value="user">Пользователь</option>
+                                <option value="tester">Тестировщик</option>
+                                <option value="admin">Администратор</option>
+                            </select></div>
+                        <button type="submit">Зарегистрироваться</button>
+                    </form>
+                    <p style="margin-top: 1rem;">Уже есть аккаунт? <a href="#" id="to-login">Войти</a></p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MySite. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Симуляция базы данных пользователей
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        
+        // Роли, которые имеют галочку
+        const verifiedRoles = ['owner', 'admin', 'tester'];
+        
+        // Если пользователей нет, создаем владельца по умолчанию
+        if (users.length === 0) {
+            const owner = {
+                id: 1,
+                name: 'Владелец',
+                email: 'owner@example.com',
+                password: 'owner123',
+                role: 'owner',
+                registrationDate: new Date().toISOString()
+            };
+            users.push(owner);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+        
+        // Функции для работы с DOM
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+        
+        function updateNavigation() {
+            if (currentUser) {
+                document.getElementById('login-link').classList.add('hidden');
+                document.getElementById('register-link').classList.add('hidden');
+                document.getElementById('logout-link').classList.remove('hidden');
+                document.getElementById('profile-link').classList.remove('hidden');
+                document.getElementById('users-link').classList.remove('hidden');
+                
+                // Обновляем информацию о текущем пользователе на главной
+                document.getElementById('current-user-card').style.display = 'block';
+                document.getElementById('current-user-name').textContent = currentUser.name;
+                document.getElementById('current-user-role').textContent = getRoleDisplayName(currentUser.role);
+                document.getElementById('current-user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                
+                // Показываем галочку, если пользователь имеет соответствующую роль
+                if (verifiedRoles.includes(currentUser.role)) {
+                    document.getElementById('current-user-badge').style.display = 'inline';
+                } else {
+                    document.getElementById('current-user-badge').style.display = 'none';
+                }
+            } else {
+                document.getElementById('login-link').classList.remove('hidden');
+                document.getElementById('register-link').classList.remove('hidden');
+                document.getElementById('logout-link').classList.add('hidden');
+                document.getElementById('profile-link').classList.add('hidden');
+                document.getElementById('users-link').classList.add('hidden');
+                document.getElementById('current-user-card').style.display = 'none';
+            }
+        }
+        
+        function getRoleDisplayName(role) {
+            const roleNames = {
+                'user': 'Пользователь',
+                'tester': 'Тестировщик',
+                'admin': 'Администратор',
+                'owner': 'Владелец'
+            };
+            return roleNames[role] || role;
+        }function showAlert(elementId, message, type) {
+            const alertElement = document.getElementById(elementId);
+            alertElement.innerHTML = message;
+            alertElement.className = alert alert-${type};
+        }
+        
+        function clearAlert(elementId) {
+            const alertElement = document.getElementById(elementId);
+            alertElement.innerHTML = '';
+            alertElement.className = '';
+        }
+        
+        // Функции для работы с пользователями
+        function registerUser(name, email, password, role) {
+            // Проверяем, существует ли уже пользователь с таким email
+            if (users.find(user => user.email === email)) {
+                return { success: false, message: 'Пользователь с таким email уже существует' };
+            }
+            
+            const newUser = {
+                id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+                name,
+                email,
+                password, // В реальном приложении пароль должен быть хеширован!
+                role,
+                registrationDate: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            return { success: true, user: newUser };
+        }
+        
+        function loginUser(email, password) {
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                return { success: true, user };
+            } else {
+                return { success: false, message: 'Неверный email или пароль' };
+            }
+        }
+        
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateNavigation();
+            showSection('home-section');
+        }
+        
+        function renderProfile() {
+            if (!currentUser) return;
+            
+            const profileContent = document.getElementById('profile-content');
+            profileContent.innerHTML = 
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar">${currentUser.name.charAt(0).toUpperCase()}</div>
+                        <div class="user-info">
+                            <div class="username">
+                                ${currentUser.name}
+                                ${verifiedRoles.includes(currentUser.role) ? '<span class="verified-badge">✓</span>' : ''}
+                            </div>
+                            <div class="user-role">${getRoleDisplayName(currentUser.role)}</div>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Email</div>
+                            <div>${currentUser.email}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Дата регистрации</div>
+                            <div>${new Date(currentUser.registrationDate).toLocaleDateString('ru-RU')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">ID пользователя</div>
+                            <div>${currentUser.id}</div>
+                        </div>
+                    </div>
+                </div>
+            ;
+        }
+        
+        function renderUsersList() {
+            const usersContent = document.getElementById('users-content');usersContent.innerHTML = '<div class="users-list"></div>';
+            const usersList = usersContent.querySelector('.users-list');
+            
+            users.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+                userCard.innerHTML = `
+                    <div class="profile-header">
+                        <div class="avatar">${user.name.charAt(0).toUpperCase()}</div>
+                        <div class="user-info">
+                            <div class="username">
+                                ${user.name}
+                                ${verifiedRoles.includes(user.role) ? '<span class="verified-badge">✓</span>' : ''}
+                            </div>
+                            <div class="user-role">${getRoleDisplayName(user.role)}</div>
+                        </div>
+                    </div>
+                    <div class="pro
